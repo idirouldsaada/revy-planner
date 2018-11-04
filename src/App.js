@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.scss';
 import classnames from "classnames";
-import { set, clone } from "lodash";
+import * as _ from "lodash";
 
 const ACTORS = [
   { name: "Andreas", id: 1 },
@@ -83,11 +83,17 @@ const SKETCHES = [
 
 class App extends Component {
   state = {
-    present: new Array(ACTORS.length).fill(true)
+    present: ACTORS.map(a => a.id)
   };
 
-  toggleActor = i => {
-    this.setState({ present: set(clone(this.state.present), `${i}`, !this.state.present[i]) })
+  toggleActor = actor => {
+    const present = _.clone(this.state.present);
+    if (_.indexOf(present, actor.id) !== -1) {
+      _.pull(present, actor.id);
+    } else {
+      present.push(actor.id)
+    }
+    this.setState({ present });
   };
 
   render() {
@@ -97,12 +103,26 @@ class App extends Component {
         <div className="actors">
           {ACTORS.map((a, i) => (
             <button
-              className={classnames("actor", this.state.present[i] && "present")}
+              className={classnames("actor", _.indexOf(this.state.present, a.id) !== -1 && "present")}
               key={i}
-              onClick={() => this.toggleActor(i)}>
+              onClick={() => this.toggleActor(a)}>
               {a.name}
             </button>
           ))}
+        </div>
+
+        <h2>Sketcher</h2>
+        <div className="sketches">
+          {SKETCHES.map((s, i) => {
+            const totalActors = s.actors.length;
+            const presentActors = this.state.present.filter(a => _.indexOf(s.actors, a) !== -1);
+            return(
+            <div
+              className={classnames("sketch", (totalActors === presentActors.length) && "present")}
+              key={i}>
+              {s.name} ({presentActors.length}/{totalActors})
+            </div>
+          )})}
         </div>
       </div>
     );

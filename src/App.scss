@@ -3,6 +3,11 @@
   padding: 1rem;
 }
 
+.image {
+  height: 80px;
+
+}
+
 .actors {
   display: flex;
   flex-direction: row;
@@ -22,6 +27,7 @@
   font-weight: bold;
   box-shadow: 0 1px 4px 0 rgba(79,88,122,0.14);
   width: 8rem;
+  transition: background-color ease 0.2s;
 }
 
 .sketches {
@@ -43,6 +49,11 @@
   box-shadow: 0 1px 4px 0 rgba(79,88,122,0.14);
   width: 8rem;
   font-size: 12px;
+  transition: background-color ease 0.2s;
+}
+
+h2 {
+  font-size: 16px;
 }
 
 

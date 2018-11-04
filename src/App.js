@@ -99,6 +99,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <img src={require("./img_sara.png")} className="image"/>
         <h2>Skuespillere</h2>
         <div className="actors">
           {ACTORS.map((a, i) => (

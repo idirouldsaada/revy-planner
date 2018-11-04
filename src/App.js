@@ -106,7 +106,7 @@ class App extends Component {
               className={classnames("actor", _.indexOf(this.state.present, a.id) !== -1 && "present")}
               key={i}
               onClick={() => this.toggleActor(a)}>
-              {a.name}
+              {a.name} ({SKETCHES.filter(s => _.indexOf(s.actors, a.id) !== -1).length})
             </button>
           ))}
         </div>

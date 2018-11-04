@@ -103,7 +103,7 @@ class App extends Component {
         <div className="actors">
           {ACTORS.map((a, i) => (
             <button
-              className={classnames("actor", _.indexOf(this.state.present, a.id) !== -1 && "present")}
+              className={classnames("actor", _.indexOf(this.state.present, a.id) !== -1 && "green")}
               key={i}
               onClick={() => this.toggleActor(a)}>
               {a.name} ({SKETCHES.filter(s => _.indexOf(s.actors, a.id) !== -1).length})
@@ -118,7 +118,7 @@ class App extends Component {
             const presentActors = this.state.present.filter(a => _.indexOf(s.actors, a) !== -1);
             return(
             <div
-              className={classnames("sketch", (totalActors === presentActors.length) && "present")}
+              className={classnames("sketch", presentActors.length === 0 ? "red" : (totalActors === presentActors.length) && "green")}
               key={i}>
               {s.name} ({presentActors.length}/{totalActors})
             </div>

@@ -79,6 +79,10 @@ const SKETCHES = [
     name: "Lil Hege",
     actors: [2]
   },
+  {
+    name: "Før i tia",
+    actors: [3, 4, 11]
+  },
 ];
 
 class App extends Component {
